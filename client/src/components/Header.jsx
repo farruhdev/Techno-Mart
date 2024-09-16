@@ -40,9 +40,9 @@ import { FcGoogle } from 'react-icons/fc';
 import { googleLogout } from '@react-oauth/google';
 import logo from './favicon.png';
 const Links = [
-  { name: 'Smartphone', route: '/products' },
-  { name: 'Laptops', route: '/products' },
-  { name: 'Living Appliances', route: '/products' },
+  { name: 'Smartphone', route: '/smartphones' },
+  { name: 'Laptops', route: '/laptops' },
+  { name: 'Living Appliances', route: '/living-appliance' },
   { name: 'Cameras', route: '/products' },
   { name: 'Kichin Appliances', route: '/products' },
   { name: 'Hot Deals', route: '/hot-deals' },

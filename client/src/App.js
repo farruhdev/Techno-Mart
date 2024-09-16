@@ -21,6 +21,10 @@ import SuccessScreen from './screens/SuccessScreen';
 import AdminConsoleScreen from './screens/AdminConsoleScreen';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Smartphones from './components/Smartphones';
+import NewProducts from './components/NewProducts';
+import Laptops from './components/Laptops';
+import LivingAppliance from './components/LivingAppliance';
 
 function App() {
 	const theme = extendTheme({
@@ -55,6 +59,12 @@ function App() {
 						<main>
 							<Routes>
 								<Route path='/products' element={<ProductsScreen />} />
+								<Route path='/laptops' element={<Laptops />} />
+								<Route path='/living-appliance' element={<LivingAppliance />} />
+								
+								<Route path='/new-products' element={<NewProducts />} />
+								
+								<Route path='/smartphones' element={<Smartphones />} />
 								<Route path='/' element={<LandingScreen />} />
 								<Route path='/product/:id' element={<ProductScreen />} />
 								<Route path='/cart' element={<CartScreen />} />
