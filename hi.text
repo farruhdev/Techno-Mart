@@ -1,0 +1,30 @@
+6ZPI7pt3Pfi2b9Cl
+
+
+doniyor07
+
+ useUnifiedTopology: true,
+            useNewUrlParser: true,
+
+
+"server": "node server/index.js",
+    "client": "npm run start --prefix client",
+
+
+
+import mongoose from 'mongoose';
+
+const connectToDatabase = async()=>{
+    try{
+        mongoose.set('strictQuery',false);
+        const connect = await mongoose.connect(process.evn.MONGO_URI, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+        });
+        console.log(`MongoDb Connected: ${connect.connection.host}`);
+    }catch (error) {
+        console.log(`Error: ${error.message}`);
+    }
+};
+
+export default connectToDatabase;
