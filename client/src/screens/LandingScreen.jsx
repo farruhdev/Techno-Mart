@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import Slider from "react-slick";
+
 import {
   Box,
   Flex,
@@ -20,7 +20,6 @@ import logo from "./favicon.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BsPhoneFlip } from "react-icons/bs";
 
 const LandingScreen = () => {
   const images = useMemo(
@@ -28,7 +27,7 @@ const LandingScreen = () => {
       "/images/landing-light.jpg",
       "/images/landing-dark.jpg",
       "/images/Camera-1.jpg",
-      "/images/Laptop-1.webp",
+      "/images/Laptop-1.jpg",
     ],
     []
   );
@@ -97,22 +96,9 @@ const LandingScreen = () => {
         </Box>
 
         <Flex flex="1" overflow="hidden">
-          {/* <Slider {...settings}>
-            {images.map((src, index) => (
-              <Box key={index}>
-                <Image
-                  src={src}
-                  fallback={<Skeleton />}
-                  maxH="550px"
-                  minW="300px"
-                  objectFit="cover"
-                  flex="1"
-                />
-              </Box>
-            ))}
-          </Slider> */}
-
-          <ImageSlide images={images} captions={captions} />
+          {
+            //slider place
+          }
         </Flex>
       </Stack>
     </Box>
