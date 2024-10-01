@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Alert,
   AlertTitle,
@@ -15,7 +16,7 @@ import ProductCard from "../components/ProductCard";
 import { getProducts } from "../redux/actions/productActions";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 
-const ProductsScreen = () => {
+export default function Cameras() {
   const dispatch = useDispatch();
   const { loading, error, products, pagination, favoritesToggled } =
     useSelector((state) => state.product);
@@ -27,7 +28,7 @@ const ProductsScreen = () => {
   const paginationButtonClick = (page) => {
     dispatch(getProducts(page));
   };
-  console.log(products);
+
   return (
     <>
       {products.length >= 1 && (
@@ -45,13 +46,16 @@ const ProductsScreen = () => {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             ) : (
-              products.map((product) => (
-                <WrapItem key={`${product._id}${product.name}`}>
-                  <Center w="250px" h="450px">
-                    <ProductCard product={product} loading={loading} />
-                  </Center>
-                </WrapItem>
-              ))
+              products.map(
+                (product) =>
+                  product.category === "Camera" && (
+                    <WrapItem key={product._id}>
+                      <Center w="250px" h="450px">
+                        <ProductCard product={product} loading={loading} />
+                      </Center>
+                    </WrapItem>
+                  )
+              )
             )}
           </Wrap>
           {!favoritesToggled && (
@@ -87,6 +91,4 @@ const ProductsScreen = () => {
       )}
     </>
   );
-};
-
-export default ProductsScreen;
+}

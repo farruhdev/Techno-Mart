@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   IconButton,
   Box,
   Flex,
   HStack,
-  Icon,
   Stack,
   Text,
   useColorModeValue as mode,
@@ -23,32 +22,36 @@ import {
   Spacer,
   useToast,
   Button, // Import Button
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { Link as ReactLink } from 'react-router-dom';
-import { MdOutlineFavorite, MdOutlineFavoriteBorder } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
-import NavLink from './NavLink';
-import ColorModeToggle from './ColorModeToggle';
-import { BiUserCheck, BiLogInCircle } from 'react-icons/bi';
-import { toggleFavorites } from '../redux/actions/productActions';
-import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
-import { TbShoppingCart } from 'react-icons/tb';
-import { logout } from '../redux/actions/userActions';
-import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { FcGoogle } from 'react-icons/fc';
-import { googleLogout } from '@react-oauth/google';
-import logo from './favicon.png';
+import { Link as ReactLink } from "react-router-dom";
+import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import NavLink from "./NavLink";
+import ColorModeToggle from "./ColorModeToggle";
+import { BiUserCheck, BiLogInCircle } from "react-icons/bi";
+import { toggleFavorites } from "../redux/actions/productActions";
+import { HamburgerIcon, CloseIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { TbShoppingCart } from "react-icons/tb";
+import { logout } from "../redux/actions/userActions";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
+import { googleLogout } from "@react-oauth/google";
+import logo from "./favicon.png";
+
 const Links = [
-  { name: 'Smartphone', route: '/smartphones' },
-  { name: 'Laptops', route: '/laptops' },
-  { name: 'Living Appliances', route: '/living-appliance' },
-  { name: 'Cameras', route: '/products' },
-  { name: 'Kichin Appliances', route: '/products' },
-  { name: 'Hot Deals', route: '/hot-deals' },
-  { name: 'Contact', route: '/contact' },
-  { name: 'Services', route: '/services' },
-  
+  // {
+  //   name: "Products",
+  //   route: "/products",
+  // },
+  { name: "Smartphone", route: "/smartphones" },
+  { name: "Laptops", route: "/laptops" },
+  { name: "Living Appliances", route: "/living-appliance" },
+  { name: "Cameras", route: "/cameras" },
+  { name: "Home digitals", route: "/home-digitals" },
+  { name: "Hot Deals", route: "/hot-deals" },
+  { name: "Contact", route: "/contact" },
+  { name: "Services", route: "/services" },
 ];
 
 const Header = () => {
@@ -58,7 +61,9 @@ const Header = () => {
   const { favoritesToggled } = useSelector((state) => state.product);
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.user);
-  const [showBanner, setShowBanner] = useState(userInfo ? !userInfo.active : false);
+  const [showBanner, setShowBanner] = useState(
+    userInfo ? !userInfo.active : false
+  );
 
   useEffect(() => {
     if (userInfo && !userInfo.active) {
@@ -70,65 +75,85 @@ const Header = () => {
     googleLogout();
     dispatch(logout());
     toast({
-      description: 'You have been logged out.',
-      status: 'success',
-      isClosable: 'true',
+      description: "You have been logged out.",
+      status: "success",
+      isClosable: "true",
     });
   };
 
   return (
     <>
-      <Box bg={mode(`#bbdefb`, 'gray.900')} px='4'>
-        <Flex h='16' alignItems='center' justifyContent='space-between'>
-          <Flex display={{ base: 'flex', md: 'none' }} alignItems='center'>
+      <Box bg={mode(`#bbdefb`, "gray.900")} px="4">
+        <Flex h="16" alignItems="center" justifyContent="space-between">
+          <Flex display={{ base: "flex", md: "none" }} alignItems="center">
             <IconButton
-              bg='parent'
-              size='md'
+              bg="parent"
+              size="md"
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
               onClick={isOpen ? onClose : onOpen}
             />
             <IconButton
-              ml='12'
-              position='absolute'
-              icon={<TbShoppingCart size='20px' />}
+              ml="12"
+              position="absolute"
+              icon={<TbShoppingCart size="20px" />}
               as={ReactLink}
-              to='/cart'
-              variant='ghost'
+              to="/cart"
+              variant="ghost"
             />
             {cartItems.length > 0 && (
-              <Text fontWeight='bold' fontStyle='italic' position='absolute' ml='74px' mt='-6' fontSize='sm'>
+              <Text
+                fontWeight="bold"
+                fontStyle="italic"
+                position="absolute"
+                ml="74px"
+                mt="-6"
+                fontSize="sm"
+              >
                 {cartItems.length}
               </Text>
             )}
           </Flex>
-          <HStack spacing='8' alignItems='center'>
-            <Box alignItems='center' display='flex' as={ReactLink} to='/'>
-            <img src={logo} alt="Logo" style={{ width: '40px', height: '40px' }} />
-              <Text as='b'>Techno Mart</Text>
+          <HStack spacing="8" alignItems="center">
+            <Box alignItems="center" display="flex" as={ReactLink} to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ width: "40px", height: "40px" }}
+              />
+              <Text as="b">Techno Mart</Text>
             </Box>
 
-            <HStack as='nav' spacing='4' display={{ base: 'none', md: 'flex' }}>
+            <HStack as="nav" spacing="4" display={{ base: "none", md: "flex" }}>
+              {/* {Links.map((link) => (
+                <NavLink key={link.name} route={link.route}>
+                  <Text fontWeight={"medium"}>{link.name}</Text>
+                </NavLink>
+              ))} */}
               <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                <MenuButton
+                  fontWeight={"semibold"}
+                  as={ReactLink}
+                  rightIcon={<ChevronDownIcon />}
+                >
                   Products
                 </MenuButton>
                 <MenuList>
-                  <MenuItem as={ReactLink} to='/products'>
-				            All Products
+                  <MenuItem as={ReactLink} to="/products">
+                    All Products
                   </MenuItem>
-                  <MenuItem as={ReactLink} to='/products/Smartphones'>
-				            Smartphone
+                  <MenuItem as={ReactLink} to="/products/Smartphones">
+                    Smartphone
                   </MenuItem>
-                  <MenuItem as={ReactLink} to='/products/category3'>
+                  <MenuItem as={ReactLink} to="/products/category3">
                     Laptops
                   </MenuItem>
-				          <MenuItem as={ReactLink} to='/products/category3'>
-                   Living Appliances
+                  <MenuItem as={ReactLink} to="/products/category3">
+                    Living Appliances
                   </MenuItem>
-				          <MenuItem as={ReactLink} to='/products/category3'>
+                  <MenuItem as={ReactLink} to="/products/category3">
                     Cameras
                   </MenuItem>
-				          <MenuItem as={ReactLink} to='/products/category3'>
+                  <MenuItem as={ReactLink} to="/products/category3">
                     Kichin Appliances
                   </MenuItem>
                 </MenuList>
@@ -136,14 +161,26 @@ const Header = () => {
 
               {Links.map((link) => (
                 <NavLink route={link.route} key={link.route}>
-                  <Text fontWeight='medium'>{link.name}</Text>
+                  <Text fontWeight="medium">{link.name}</Text>
                 </NavLink>
               ))}
 
               <Box>
-                <IconButton icon={<TbShoppingCart size='20px' />} as={ReactLink} to='/cart' variant='ghost' />
+                <IconButton
+                  icon={<TbShoppingCart size="20px" />}
+                  as={ReactLink}
+                  to="/cart"
+                  variant="ghost"
+                />
                 {cartItems.length > 0 && (
-                  <Text fontWeight='bold' fontStyle='italic' position='absolute' ml='26px' mt='-6' fontSize='sm'>
+                  <Text
+                    fontWeight="bold"
+                    fontStyle="italic"
+                    position="absolute"
+                    ml="26px"
+                    mt="-6"
+                    fontSize="sm"
+                  >
                     {cartItems.length}
                   </Text>
                 )}
@@ -153,56 +190,61 @@ const Header = () => {
               {favoritesToggled ? (
                 <IconButton
                   onClick={() => dispatch(toggleFavorites(false))}
-                  icon={<MdOutlineFavorite size='20px' />}
-                  variant='ghost'
+                  icon={<MdOutlineFavorite size="20px" />}
+                  variant="ghost"
                 />
               ) : (
                 <IconButton
                   onClick={() => dispatch(toggleFavorites(true))}
-                  icon={<MdOutlineFavoriteBorder size='20px' />}
-                  variant='ghost'
+                  icon={<MdOutlineFavoriteBorder size="20px" />}
+                  variant="ghost"
                 />
               )}
             </HStack>
           </HStack>
-          <Flex alignItems='center'>
+          <Flex alignItems="center">
             {userInfo ? (
               <Menu>
-                <MenuButton rounded='full' variant='link' cursor='pointer' minW='0'>
+                <MenuButton
+                  rounded="full"
+                  variant="link"
+                  cursor="pointer"
+                  minW="0"
+                >
                   <HStack>
                     {userInfo.googleImage ? (
                       <Image
-                        borderRadius='full'
-                        boxSize='40px'
+                        borderRadius="full"
+                        boxSize="40px"
                         src={userInfo.googleImage}
-                        referrerPolicy='no-referrer'
+                        referrerPolicy="no-referrer"
                       />
                     ) : (
-                      <BiUserCheck size='30' />
+                      <BiUserCheck size="30" />
                     )}
                     <ChevronDownIcon />
                   </HStack>
                 </MenuButton>
                 <MenuList>
                   <HStack>
-                    <Text pl='3' as='i'>
+                    <Text pl="3" as="i">
                       {userInfo.email}
                     </Text>
                     {userInfo.googleId && <FcGoogle />}
                   </HStack>
-                  <Divider py='1' />
-                  <MenuItem as={ReactLink} to='/order-history'>
+                  <Divider py="1" />
+                  <MenuItem as={ReactLink} to="/order-history">
                     Order History
                   </MenuItem>
-                  <MenuItem as={ReactLink} to='/profile'>
+                  <MenuItem as={ReactLink} to="/profile">
                     Profile
                   </MenuItem>
                   {userInfo.isAdmin && (
                     <>
                       <MenuDivider />
-                      <MenuItem as={ReactLink} to='/admin-console'>
+                      <MenuItem as={ReactLink} to="/admin-console">
                         <MdOutlineAdminPanelSettings />
-                        <Text ml='2'>Admin Console</Text>
+                        <Text ml="2">Admin Console</Text>
                       </MenuItem>
                     </>
                   )}
@@ -212,13 +254,30 @@ const Header = () => {
               </Menu>
             ) : (
               <Menu>
-                <MenuButton as={IconButton} variant='ghost' cursor='pointer' icon={<BiLogInCircle size='25px' />} />
+                <MenuButton
+                  as={IconButton}
+                  variant="ghost"
+                  cursor="pointer"
+                  icon={<BiLogInCircle size="25px" />}
+                />
                 <MenuList>
-                  <MenuItem as={ReactLink} to='/login' p='2' fontWeight='400' variant='link'>
+                  <MenuItem
+                    as={ReactLink}
+                    to="/login"
+                    p="2"
+                    fontWeight="400"
+                    variant="link"
+                  >
                     Sign in
                   </MenuItem>
                   <MenuDivider />
-                  <MenuItem as={ReactLink} to='/registration' p='2' fontWeight='400' variant='link'>
+                  <MenuItem
+                    as={ReactLink}
+                    to="/registration"
+                    p="2"
+                    fontWeight="400"
+                    variant="link"
+                  >
                     Sign up
                   </MenuItem>
                 </MenuList>
@@ -226,52 +285,54 @@ const Header = () => {
             )}
           </Flex>
         </Flex>
-        <Box display='flex'>
+        <Box display="flex">
           {isOpen && (
-            <Box pb='4' display={{ md: 'none' }}>
-              <Stack as='nav' spacing='4'>
-                {Links.map((link) => (
-                  <NavLink route={link.route} key={link.route}>
-                    <Text fontWeight='medium'>{link.name}</Text>
-                  </NavLink>
-                ))}
-              </Stack>
+            <Box pb="4" display={{ md: "none" }}>
               <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                <MenuButton as={ReactLink} rightIcon={<ChevronDownIcon />}>
                   Products
                 </MenuButton>
                 <MenuList>
-                <MenuItem as={ReactLink} to='/products'>
-				            All Products
+                  <MenuItem as={ReactLink} to="/products">
+                    All Products
                   </MenuItem>
-                  <MenuItem as={ReactLink} to='/products/Smartphones'>
-				            Smartphone
+                  <MenuItem as={ReactLink} to="/products/Smartphones">
+                    Smartphone
                   </MenuItem>
-                  <MenuItem as={ReactLink} to='/products/category3'>
+                  <MenuItem as={ReactLink} to="/products/category3">
                     Laptops
                   </MenuItem>
-				          <MenuItem as={ReactLink} to='/products/category3'>
-                   Living Appliances
+                  <MenuItem as={ReactLink} to="/products/category3">
+                    Living Appliances
                   </MenuItem>
-				          <MenuItem as={ReactLink} to='/products/category3'>
+                  <MenuItem as={ReactLink} to="/products/category3">
                     Cameras
                   </MenuItem>
-				          <MenuItem as={ReactLink} to='/products/category3'>
+                  <MenuItem as={ReactLink} to="/products/category3">
                     Kichin Appliances
                   </MenuItem>
                 </MenuList>
               </Menu>
+
+              <Stack as="nav" spacing="4">
+                {Links.map((link) => (
+                  <NavLink route={link.route} key={link.route}>
+                    <Text fontWeight="medium">{link.name}</Text>
+                  </NavLink>
+                ))}
+              </Stack>
+
               {favoritesToggled ? (
                 <IconButton
                   onClick={() => dispatch(toggleFavorites(false))}
-                  icon={<MdOutlineFavorite size='20px' />}
-                  variant='ghost'
+                  icon={<MdOutlineFavorite size="20px" />}
+                  variant="ghost"
                 />
               ) : (
                 <IconButton
                   onClick={() => dispatch(toggleFavorites(true))}
-                  icon={<MdOutlineFavoriteBorder size='20px' />}
-                  variant='ghost'
+                  icon={<MdOutlineFavoriteBorder size="20px" />}
+                  variant="ghost"
                 />
               )}
               <ColorModeToggle />
@@ -281,12 +342,17 @@ const Header = () => {
       </Box>
       {userInfo && !userInfo.active && showBanner && (
         <Box>
-          <Alert status='warning'>
+          <Alert status="warning">
             <AlertIcon />
             <AlertTitle>Email not verified!</AlertTitle>
-            <AlertDescription>You must verify your email address.</AlertDescription>
+            <AlertDescription>
+              You must verify your email address.
+            </AlertDescription>
             <Spacer />
-            <CloseIcon cursor={'pointer'} onClick={() => setShowBanner(false)} />
+            <CloseIcon
+              cursor={"pointer"}
+              onClick={() => setShowBanner(false)}
+            />
           </Alert>
         </Box>
       )}
