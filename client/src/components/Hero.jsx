@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../redux/actions/productActions';
+import SlideShow from './SlideShow';
 
 function Hero() {
   const { products } = useSelector((state) => state.product);
   const dispatch = useDispatch();
+  const [product, setProduct] = useState(products[0]);
 
   useEffect(() => {
     dispatch(getProducts(1));
@@ -13,7 +15,13 @@ function Hero() {
   const paginationButtonClick = (page) => {
     dispatch(getProducts(page));
   };
-  console.log(products);
+
+  useEffect(() => {
+    setTimeout(
+      setProduct((product) => products[Math.floor(Math.random() * products.length)]),
+      1000
+    );
+  }, [products]);
 
   return (
     <div className='hero'>
@@ -47,12 +55,21 @@ function Hero() {
           </div>
           <div className='col-lg-7'>
             <div className='hero-img-wrap'>
-              <img
+              {/* <img
                 alt='image'
                 className='animate__animated animate__backInRight w-80 h-80'
                 src='couch.png'
                 className='img-fluid'
+              /> */}
+
+              <img
+                alt='image'
+                className='animate__animated animate__backInRight w-80 h-80'
+                src={product?.images[0]}
+                className='img-fluid max-w[400px]'
               />
+
+              {/* <SlideShow products={products} /> */}
             </div>
           </div>
         </div>

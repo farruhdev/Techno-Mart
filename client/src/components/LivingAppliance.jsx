@@ -32,7 +32,7 @@ export default function LivingAppliance() {
 							</Alert>
 						) : (
 							products.map((product) => (
-                                product.category==='Living Appliances' &&
+                                product.category==='Living Appliances' && 
 								<WrapItem key={product._id}>
 									<Center w='250px' h='450px'>
 										<ProductCard product={product} loading={loading} />
