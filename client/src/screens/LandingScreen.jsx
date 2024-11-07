@@ -1,43 +1,24 @@
-import React, { useMemo } from "react";
-
-import {
-  Box,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  Image,
-  Skeleton,
-  Stack,
-  useColorModeValue as mode,
-  Text,
-  Link, // Chakra UI의 Link를 사용
-} from "@chakra-ui/react";
-import { ImageSlide } from "react-chakra-slide-show";
-import { FaArrowRight } from "react-icons/fa";
-import { Link as ReactLink } from "react-router-dom"; // react-router-dom의 Link를 ReactLink로 임포트
-import logo from "./favicon.png";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useMemo } from 'react';
+import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import logo from './favicon.png';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
 
 const LandingScreen = () => {
   const images = useMemo(
-    () => [
-      "/images/landing-light.jpg",
-      "/images/landing-dark.jpg",
-      "/images/Camera-1.jpg",
-      "/images/Laptop-1.jpg",
-    ],
+    () => ['/images/landing-light.jpg', '/images/landing-dark.jpg', '/images/Camera-1.jpg', '/images/Laptop-1.jpg'],
     []
   );
 
   const captions = useMemo(
     () => [
-      "Where quality meets style – discover the difference.",
-      "Your one-stop shop for everything you need, delivered to your door",
-      "Your satisfaction, our priority. Discover a seamless shopping experience.",
-      "Discover exclusive finds you won’t see anywhere else.",
+      'Where quality meets style – discover the difference.',
+      'Your one-stop shop for everything you need, delivered to your door',
+      'Your satisfaction, our priority. Discover a seamless shopping experience.',
+      'Discover exclusive finds you won’t see anywhere else.',
     ],
     []
   );
@@ -52,56 +33,238 @@ const LandingScreen = () => {
   };
 
   return (
-    <Box maxW="8xl" mx="auto" p={{ base: "0", lg: "12" }} minH="6xl">
-      <Stack
-        direction={{ base: "column-reverse", lg: "row" }}
-        spacing={{ base: "0", lg: "20" }}
-      >
-        <Box
-          width={{ lg: "sm" }}
-          transform={{ base: "translateY(-50%)", lg: "none" }}
-          bg={{ base: mode("cyan.50", "gray.700"), lg: "transparent" }}
-          mx={{ base: "6", md: "8", lg: "0" }}
-          px={{ base: "6", md: "8", lg: "0" }}
-          py={{ base: "6", md: "8", lg: "12" }}
-        >
-          <Stack spacing={{ base: "8", lg: "10" }}>
-            <Stack spacing={{ base: "2", lg: "4" }}>
-              <Flex alignItems="center">
-                <img
-                  src={logo}
-                  alt="Logo"
-                  style={{ width: "150px", height: "150px" }}
-                />
+    <div className='max-w-8xl mx-auto p-0 lg:p-12 min-h-screen'>
+      <Hero />
 
-                <Text fontSize="4xl" fontWeight="bold">
-                  Techno Mart
-                </Text>
-              </Flex>
-              <Heading size="xl" fontWeight="normal">
-                Refresh your equipment
-              </Heading>
-            </Stack>
-            <HStack spacing="3">
-              <Link
-                as={ReactLink}
-                to="/products"
-                color={mode("orange", "yellow.200")}
+      <div className='product-section'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-12 col-lg-3 mb-5 mb-lg-0'>
+              <h2 className='mb-4 section-title'>Crafted with excellent material.</h2>
+              <p className='mb-4'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo minus molestiae natus aut, quia illum
+                eveniet?
+              </p>
+              <p>
+                <a
+                  href='shop.html'
+                  className='btn'
+                >
+                  Explore
+                </a>
+              </p>
+            </div>
+
+            <div className='box col-12 col-md-4 col-lg-3 mb-5 mb-md-0'>
+              <a
+                className='product-item'
+                href='#'
               >
-                Discover now
-              </Link>
-              <Icon color={mode("orange", "yellow.200")} as={FaArrowRight} />
-            </HStack>
-          </Stack>
-        </Box>
+                <img
+                  src='product-1.png'
+                  className='img-fluid product-thumbnail'
+                />
+                <h3 className='product-title'>Smart Phone</h3>
+                <strong className='product-price'>$50.00</strong>
 
-        <Flex flex="1" overflow="hidden">
-          {
-            //slider place
-          }
-        </Flex>
-      </Stack>
-    </Box>
+                <span className='icon-cross'>
+                  <img
+                    src='cross.svg'
+                    className='img-fluid'
+                  />
+                </span>
+              </a>
+            </div>
+
+            <div className='box col-12 col-md-4 col-lg-3 mb-5 mb-md-0'>
+              <a
+                className='product-item'
+                href='#'
+              >
+                <img
+                  src='product-2.png'
+                  className='img-fluid product-thumbnail'
+                />
+                <h3 className='product-title'>Smart Phone</h3>
+                <strong className='product-price'>$78.00</strong>
+
+                <span className='icon-cross'>
+                  <img
+                    src='cross.svg'
+                    className='img-fluid'
+                  />
+                </span>
+              </a>
+            </div>
+
+            <div className='box col-12 col-md-4 col-lg-3 mb-5 mb-md-0'>
+              <a
+                className='product-item'
+                href='#'
+              >
+                <img
+                  src='product-3.png'
+                  className='img-fluid product-thumbnail'
+                />
+                <h3 className='product-title'>Smart Phone</h3>
+                <strong className='product-price'>$43.00</strong>
+
+                <span className='icon-cross'>
+                  <img
+                    src='cross.svg'
+                    className='img-fluid'
+                  />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id='services'
+        className='why-choose-section'
+      >
+        <div className='container'>
+          <div className='row justify-content-between text-center flex-column-reverse flex-lg-row'>
+            <div className='col-lg-6'>
+              <h2 className='section-title'>Why Choose Us</h2>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad accusantium perferendis laborum magni!
+                Nobis, quisquam quasi?
+              </p>
+              <div className='row my-5'>
+                <div className='col-6 col-md-6'>
+                  <div className='feature'>
+                    <div className='icon'>
+                      <img
+                        src='truck.svg'
+                        alt='Image'
+                        className='imf-fluid'
+                      />
+                    </div>
+                    <h3>Fast &amp; Free Shipping</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis dolore illo eum quis? Non.
+                    </p>
+                  </div>
+                </div>
+
+                <div className='col-6 col-md-6'>
+                  <div className='feature'>
+                    <div className='icon'>
+                      <img
+                        src='bag.svg'
+                        alt='Image'
+                        className='imf-fluid'
+                      />
+                    </div>
+                    <h3>Easy to Shop</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet at enim perferendis
+                      necessitatibus ea!
+                    </p>
+                  </div>
+                </div>
+
+                <div className='col-6 col-md-6'>
+                  <div className='feature'>
+                    <div className='icon'>
+                      <img
+                        src='support.svg'
+                        alt='Image'
+                        className='imf-fluid'
+                      />
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium totam corporis animi
+                      doloremque rerum?
+                    </p>
+                  </div>
+                </div>
+
+                <div className='col-6 col-md-6'>
+                  <div className='feature'>
+                    <div className='icon'>
+                      <img
+                        src='return.svg'
+                        alt='Image'
+                        className='imf-fluid'
+                      />
+                    </div>
+                    <h3>Hassle Free Returns</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis modi animi earum deserunt magni.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-5'>
+              <div className='img-wrap'>
+                <img
+                  src='monitor.png'
+                  alt='Image'
+                  className='img-fluid'
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className='we-help-section'>
+        <div className='container'>
+          <div className='row justify-content-between'>
+            <div className='col-lg-7 mb-5 mb-lg-0'>
+              <div className='imgs-grid'>
+                <div className='grid grid-1'>
+                  <img
+                    src='monitor.png'
+                    alt='online store'
+                  />
+                </div>
+                <div className='grid grid-2'>
+                  <img
+                    src='sofa.png'
+                    alt='online store'
+                  />
+                </div>
+                <div className='grid grid-3'>
+                  <img
+                    src='img-grid-3.png'
+                    alt='online store'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-5 ps-lg-5'>
+              <h2 className='section-title mb-4'>We Help You Make a Dicision to Choose The Suitable Divce</h2>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. A illo aliquid enim quasi molestiae doloremque
+                voluptate, harum soluta suscipit voluptatum.
+              </p>
+
+              <ul className='list-unstyled custom-list my-4'>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+              </ul>
+              <p>
+                <a
+                  herf='#'
+                  className='btn'
+                >
+                  Explore
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
